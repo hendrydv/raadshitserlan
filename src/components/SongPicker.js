@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import FuzzySet from 'fuzzyset.js';
 import '../styles/SongPicker.css';
 import numberData from '../data/numbers.json';
+import ReactGa from 'react-ga4';
 
 const SongPicker = ({number}) => {
     const navigate = useNavigate();
