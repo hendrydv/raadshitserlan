@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import numberData from '../data/numbers.json';
 import '../styles/Feedback.css';
+import ReactGa from 'react-ga4';
 
 const Feedback = ({ request }) => {
     const location = useLocation();
@@ -10,6 +11,8 @@ const Feedback = ({ request }) => {
     if (!feedback || !feedback.message || !feedback.type) {
         return null;
     }
+
+    ReactGa.send({ hitType: 'pageview', page: '/feedback' });
 
     const score = localStorage.getItem('score') || 0;
     const guessedNumbers = JSON.parse(localStorage.getItem('guessedNumbers'));

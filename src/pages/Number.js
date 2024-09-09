@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/Number.css';
 import Player from "../components/Player";
 import SongPicker from "../components/SongPicker";
+import ReactGa from 'react-ga4';
 
 const Number = () => {
     const { number } = useParams();
@@ -19,6 +20,8 @@ const Number = () => {
         if (parsed.includes(number)) {
             return navigate('/already-guessed');
         }
+
+        ReactGa.send({ hitType: 'pageview', page: `/${number}` });
     }, []);
 
     return (

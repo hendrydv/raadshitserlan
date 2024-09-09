@@ -1,7 +1,10 @@
 import React from 'react';
+import ReactGa from 'react-ga4';
 
 const Done = ({ request }) => {
     const score = localStorage.getItem('score') || 0;
+
+    ReactGa.send({ hitType: 'pageview', page: '/done' });
 
     return (
         <div>

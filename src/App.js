@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Number from './pages/Number';
 import Feedback from "./pages/Feedback";
 import AlreadyGuessed from "./pages/AlreadyGuessed";
+import ReactGa from 'react-ga4';
 
 function App() {
+    ReactGa.initialize('G-MSNFRPGPF8');
+
     return (
         <Router>
             <Routes>

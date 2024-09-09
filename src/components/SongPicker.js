@@ -59,7 +59,7 @@ const SongPicker = ({number}) => {
                 return;
             }
 
-            localStorage.setItem('score', localStorage.getItem('score') + 2);
+            addToScore(2, 'both');
             redirectFeedback({
                 type: 'success',
                 message: 'Artiest en titel zijn beide goed, hiermee heb je 2 punten verdiend!',
@@ -76,18 +76,28 @@ const SongPicker = ({number}) => {
 
     const wrongMessage = (artistCorrect, titleCorrect) => {
         if (!artistCorrect && titleCorrect) {
-            localStorage.setItem('score', localStorage.getItem('score') + 1);
+            addToScore(1, 'title');
             return 'Artiest is fout maar de titel is goed, hiermee heb je 1 punt verdiend!';
         }
 
         if (artistCorrect && !titleCorrect) {
-            localStorage.setItem('score', localStorage.getItem('score') + 1);
+            addToScore(1, 'artist');
             return 'Artiest is goed maar de titel is fout, hiermee heb je 1 punt verdiend!';
         }
 
         if (!artistCorrect && !titleCorrect) {
             return 'Artiest en titel zijn beide fout, hiermee heb je helaas geen punten verdiend.';
         }
+    }
+
+    const addToScore = (points, correct) => {
+        localStorage.setItem('score', localStorage.getItem('score') + points);
+
+        ReactGa.event({
+            category: 'Score',
+            action: correct,
+            value: number,
+        });
     }
 
     return (
